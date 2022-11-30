@@ -29,7 +29,7 @@ public class MasterController {
     private Button signin;
 
     @FXML
-    protected void onClickingSignIn() {
+    protected void onClickingSignIn(ActionEvent e) throws IOException {
 
         DatabaseConnect dbConnect = new DatabaseConnect();
         UserData usdata = dbConnect.loginValidation(username.getText(), password.getText());
@@ -40,6 +40,20 @@ public class MasterController {
         else {
             statusText.setText("Login Success!");
             statusText.setTextFill(Color.GREEN);
+            if(usdata.role.equals("Team Manager")) {
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/admindashboard.fxml"));
+                stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+                scene = new Scene(fxmlLoader.load());
+                stage.setScene(scene);
+                stage.show();
+            }
+            if(usdata.role.equals("Team Member")) {
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/memberdashboard.fxml"));
+                stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+                scene = new Scene(fxmlLoader.load());
+                stage.setScene(scene);
+                stage.show();
+            }
         }
     }
     @FXML
