@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="320.0" minHeight="80.0" minWidth="320.0" prefHeight="75.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <BorderPane minHeight="75.0" prefHeight="69.0" prefWidth="320.0" style="-fx-background-color: #808cc4;" BorderPane.alignment="CENTER">
+         <top>
+            <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="347.0" text="Work ID" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </top>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+         <bottom>
+            <Label alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="361.0" text="Assigned to" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </bottom>
+         <center>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="278.0" style="-fx-background-color: transparent;" text="Work Name" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </center>
+      </BorderPane>
+   </center>
+   <top>
+      <Label BorderPane.alignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <Label BorderPane.alignment="CENTER">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </bottom>
+   <left>
+      <Icon content="PERSON_PIN" prefHeight="54.0" prefWidth="36.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
