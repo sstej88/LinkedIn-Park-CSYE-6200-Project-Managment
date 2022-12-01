@@ -41,6 +41,7 @@ public class MasterController {
             statusText.setText("Login Success!");
             statusText.setTextFill(Color.GREEN);
             if(usdata.role.equals("Team Manager")) {
+                LoggedInData.usdata = usdata;
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/admindashboard.fxml"));
                 stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                 scene = new Scene(fxmlLoader.load());
@@ -48,6 +49,7 @@ public class MasterController {
                 stage.show();
             }
             if(usdata.role.equals("Team Member")) {
+                LoggedInData.usdata = usdata;
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/memberdashboard.fxml"));
                 stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                 scene = new Scene(fxmlLoader.load());
