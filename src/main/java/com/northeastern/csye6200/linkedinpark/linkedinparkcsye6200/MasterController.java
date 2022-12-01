@@ -42,15 +42,15 @@ public class MasterController {
             statusText.setTextFill(Color.GREEN);
             if(usdata.role.equals("Team Manager")) {
                 LoggedInData.usdata = usdata;
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/admindashboard.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/managerDashboard.fxml"));
                 stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                scene = new Scene(fxmlLoader.load());
+                scene = new Scene(fxmlLoader.load(), 1105, 745);
                 stage.setScene(scene);
                 stage.show();
             }
             if(usdata.role.equals("Team Member")) {
                 LoggedInData.usdata = usdata;
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/memberdashboard.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/managerDashboard.fxml"));
                 stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                 scene = new Scene(fxmlLoader.load());
                 stage.setScene(scene);

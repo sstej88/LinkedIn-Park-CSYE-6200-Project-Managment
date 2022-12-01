@@ -6,7 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,24 +18,31 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class AdminDashboardController implements Initializable {
+public class ManagerController implements Initializable {
 
     private Stage stage;
     private Scene scene;
-    @FXML
-    private Label name;
-    @FXML
-    private Hyperlink username;
 
     @FXML
-    private Label role;
+    private Label welcomeText;
 
+    @FXML
+    private Label roleText;
+
+    @FXML
+    private Hyperlink logoutLink;
+    @FXML
+    private VBox yetToStart;
+    @FXML
+    private VBox currentlyRunning;
+    @FXML
+    private VBox completedTasks;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        name.setText("Welcome, "+LoggedInData.usdata.name);
-        username.setText(LoggedInData.usdata.username+" (Logout)");
-        role.setText("You are "+LoggedInData.usdata.role);
+        welcomeText.setText("Welcome, "+LoggedInData.usdata.name);
+        roleText.setText("You are a "+LoggedInData.usdata.role);
+        logoutLink.setText(LoggedInData.usdata.username+" (logout)");
     }
 
     @FXML
@@ -49,4 +60,10 @@ public class AdminDashboardController implements Initializable {
         }
     }
 
+    @FXML
+    protected void addTask(ActionEvent e) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("fxml/task.fxml"));
+        yetToStart.getChildren().add(fxmlLoader.load());
+    }
 }
