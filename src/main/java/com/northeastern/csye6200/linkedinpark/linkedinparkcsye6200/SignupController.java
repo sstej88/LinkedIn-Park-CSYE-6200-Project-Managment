@@ -11,17 +11,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.sql.*;
 
 public class SignupController implements Initializable {
 
     private Stage stage;
     private Scene scene;
+
+    public Connection conn;
     @FXML
     TextField name;
     @FXML
@@ -40,9 +46,45 @@ public class SignupController implements Initializable {
     @FXML
     Hyperlink login;
 
-    @FXML
-    protected void onClickingSignup(ActionEvent e) throws IOException {
+    private static final String EMAIL_PATTERN = "^(.+)@(\\S+)$";
+    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 
+    @FXML
+    protected void onClickingSignup(ActionEvent e) throws Exception {
+        Matcher matcher = pattern.matcher(username.getText());
+        if(name.getText().equals(null) || name.getText().equals("")) {
+            statusLabel.setText("Enter a valid name");
+            statusLabel.setTextFill(Color.RED);
+        }
+        else if(matcher.matches()==false) {
+            statusLabel.setText("Enter valid username");
+            statusLabel.setTextFill(Color.RED);
+        }
+        else if(password.getText().equals(null) || password.getText().equals("")) {
+            statusLabel.setText("Create a good password!");
+            statusLabel.setTextFill(Color.RED);
+        }
+        else if(teamManager.isSelected()==false && teamMember.isSelected()==false) {
+            statusLabel.setText("Select your role before signing up!");
+            statusLabel.setTextFill(Color.RED);
+        }
+        else {
+            DatabaseConnector dbc = new DatabaseConnector();
+            try {
+                if(dbc.checkForLoginDetails(username.getText())==0) {
+                    String userRole = teamManager.isSelected()?"Team Manager":"Team Leader";
+                    dbc.insertLoginDetailsToDB(name.getText(), username.getText(), password.getText(), userRole);
+                    statusLabel.setText("Account Created Successfully");
+                    statusLabel.setTextFill(Color.GREEN);
+                }
+                else {
+                    statusLabel.setText("Username already exist!");
+                    statusLabel.setTextFill(Color.RED);
+                }
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
     @FXML
     protected void onClickingLogin(ActionEvent e) throws IOException {
@@ -52,6 +94,7 @@ public class SignupController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         statusLabel.setText("");

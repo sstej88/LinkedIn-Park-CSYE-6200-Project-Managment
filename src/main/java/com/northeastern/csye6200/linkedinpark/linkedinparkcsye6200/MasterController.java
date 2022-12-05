@@ -38,8 +38,27 @@ public class MasterController implements Initializable {
         stage.show();
     }
 
-    @FXML void loginIntoApplication(ActionEvent e) throws IOException {
-        statusLabel.setText(username.getText()+" - "+password.getText());
+    @FXML void loginIntoApplication(ActionEvent e) throws Exception {
+        if( username.getText().equals(null) || username.getText().equals("")) {
+            statusLabel.setText("Enter a valid username");
+            statusLabel.setTextFill(Color.RED);
+        }
+        else if(password.getText().equals(null) || password.getText().equals("")) {
+            statusLabel.setText("Enter a valid password");
+            statusLabel.setTextFill(Color.RED);
+        }
+        else {
+            DatabaseConnector dbc = new DatabaseConnector();
+            if(dbc.checkForLogin(username.getText(), password.getText())!=0) {
+                statusLabel.setText("Login is successful");
+                statusLabel.setTextFill(Color.GREEN);
+                statusLabel.setText(LoggedInUser.name+" - "+LoggedInUser.username+" - "+LoggedInUser.role);
+            }
+            else {
+                statusLabel.setText("Invalid Credentials");
+                statusLabel.setTextFill(Color.RED);
+            }
+        }
     }
 
     @Override
