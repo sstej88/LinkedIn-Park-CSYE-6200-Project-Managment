@@ -41,6 +41,18 @@ public class AdminDashboardController implements Initializable {
         LoggedInUser.name = "";
         LoggedInUser.role = "";
         LoggedInUser.username = "";
+        TaskControllerYetToStart.workIDs.clear();
+        TaskControllerYetToStart.workNames.clear();
+        TaskControllerYetToStart.assignedToNames.clear();
+        TaskControllerYetToStart.assignedToUsernames.clear();
+        TaskControllerRunning.workIDs.clear();
+        TaskControllerRunning.workNames.clear();
+        TaskControllerRunning.assignedToNames.clear();
+        TaskControllerRunning.assignedToUsernames.clear();
+        TaskControllerDone.workIDs.clear();
+        TaskControllerDone.workNames.clear();
+        TaskControllerDone.assignedToNames.clear();
+        TaskControllerDone.assignedToUsernames.clear();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/master.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
@@ -51,9 +63,7 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     protected void getTasks() throws Exception {
-        dbs.getTasksAssignedBy(LoggedInUser.username, "Start");
-        dbs.getTasksAssignedBy(LoggedInUser.username, "Running");
-        dbs.getTasksAssignedBy(LoggedInUser.username, "Done");
+        dbs.getTasksAssignedBy(LoggedInUser.username);
         for(int i=0; i<TaskControllerYetToStart.assignedToUsernames.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerYetToStart.fxml"));
@@ -63,6 +73,26 @@ public class AdminDashboardController implements Initializable {
             controller.work_name.setText(TaskControllerYetToStart.workNames.get(i));
             controller.assigned_to.setText(TaskControllerYetToStart.assignedToUsernames.get(i));
             newTasks.getChildren().add(workItem);
+        }
+        for(int i=0; i<TaskControllerRunning.assignedToUsernames.size();i++) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerRunning.fxml"));
+            BorderPane workItem = fxmlLoader.load();
+            TaskControllerRunning controller = fxmlLoader.<TaskControllerRunning>getController();
+            controller.work_id.setText(TaskControllerRunning.workIDs.get(i));
+            controller.work_name.setText(TaskControllerRunning.workNames.get(i));
+            controller.assigned_to.setText(TaskControllerRunning.assignedToUsernames.get(i));
+            currentTasks.getChildren().add(workItem);
+        }
+        for(int i=0; i<TaskControllerDone.assignedToUsernames.size();i++) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerDone.fxml"));
+            BorderPane workItem = fxmlLoader.load();
+            TaskControllerDone controller = fxmlLoader.<TaskControllerDone>getController();
+            controller.work_id.setText(TaskControllerDone.workIDs.get(i));
+            controller.work_name.setText(TaskControllerDone.workNames.get(i));
+            controller.assigned_to.setText(TaskControllerDone.assignedToUsernames.get(i));
+            completedTasks.getChildren().add(workItem);
         }
     }
 
