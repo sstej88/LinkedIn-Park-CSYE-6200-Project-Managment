@@ -109,4 +109,14 @@ public class AdminDashboardController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    protected void addTasks(ActionEvent e) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/addTask.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
 }
