@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class AdminDashboardController implements Initializable {
+    public static boolean isComingBack = false;
     DatabaseConnector dbs;
     private Stage stage;
     private Scene scene;

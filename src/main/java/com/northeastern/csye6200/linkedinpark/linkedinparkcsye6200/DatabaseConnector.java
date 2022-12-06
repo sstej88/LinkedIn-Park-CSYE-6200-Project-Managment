@@ -111,4 +111,20 @@ public class DatabaseConnector {
             System.out.println("Not connected to database");
         }
     }
+
+    public void getTaskFromDatabase(String workId) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM tasks WHERE task_id='"+workId+"'");
+            while(rs.next()) {
+
+            }
+        }
+        else {
+            System.out.println("Unable to Connect to database");
+        }
+    }
 }

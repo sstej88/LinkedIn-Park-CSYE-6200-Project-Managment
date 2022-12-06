@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
@@ -32,17 +33,11 @@
             </Label>
          </bottom>
          <center>
-            <Label fx:id="work_name" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="267.0" text="Work Name" textFill="WHITE" BorderPane.alignment="CENTER">
+            <MFXButton fx:id="work_name" onAction="#changeTheTaskValues" prefHeight="79.0" prefWidth="267.0" style="-fx-background-color: #0C2D48;" text="Button" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
-               <BorderPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </BorderPane.margin>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </Label>
+            </MFXButton>
          </center>
       </BorderPane>
    </center>
