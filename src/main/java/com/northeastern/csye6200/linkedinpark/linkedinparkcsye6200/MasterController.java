@@ -53,6 +53,14 @@ public class MasterController implements Initializable {
                 statusLabel.setText("Login is successful");
                 statusLabel.setTextFill(Color.GREEN);
                 statusLabel.setText(LoggedInUser.name+" - "+LoggedInUser.username+" - "+LoggedInUser.role);
+                if(LoggedInUser.role.equals("Team Manager")) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/adminDashboard.fxml"));
+                    stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+                    scene = new Scene(fxmlLoader.load());
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.show();
+                }
             }
             else {
                 statusLabel.setText("Invalid Credentials");

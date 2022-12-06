@@ -68,4 +68,27 @@ public class DatabaseConnector {
             return -1;
         }
     }
+
+    public void getTasksAssignedBy(String username, String start) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            String query = "SELECT * FROM tasks WHERE assigned_by_username='"+username+"' and task_status='"+start+"';";
+            System.out.println(query);
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()) {
+                TaskControllerYetToStart.workIDs.add(rs.getString(1));
+                TaskControllerYetToStart.workNames.add(rs.getString(2));
+                TaskControllerYetToStart.assignedToUsernames.add(rs.getString(6));
+                TaskControllerYetToStart.assignedToNames.add(rs.getString(7));
+            }
+            st.close();
+            conn.close();
+        }
+        else {
+            System.out.println("Not connected to database");
+        }
+    }
 }
