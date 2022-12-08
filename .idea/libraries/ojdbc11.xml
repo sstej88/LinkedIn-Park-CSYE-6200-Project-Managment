@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="ojdbc11">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/ojdbc11.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/ons.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/oraclepki.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/orai18n.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/osdt_cert.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/osdt_core.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/rsi.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/simplefan.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/ucp11.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/xdb.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/xmlparserv2_sans_jaxp_services.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/OracleJdbcDriver/xmlparserv2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
