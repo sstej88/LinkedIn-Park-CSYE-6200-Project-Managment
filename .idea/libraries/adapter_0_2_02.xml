@@ -1,0 +1,64 @@
+<component name="libraryTable">
+  <library name="adapter-0.2.02">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Documents/RJars/adapter-0.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aether-api-1.0.2.v20150114.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aether-connector-basic-1.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aether-impl-1.0.2.v20150114.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aether-spi-1.0.2.v20150114.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aether-transport-file-1.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aether-transport-http-1.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aether-util-1.0.2.v20150114.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/animal-sniffer-annotations-1.14.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aopalliance-1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/aot-0.53.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/asm-7.0-beta.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/bcpkix-jdk15on-1.49.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/bcprov-jdk15on-1.49.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/cdi-api-1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/charm-glisten-6.2.2.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/checker-compat-qual-2.0.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/commons-codec-1.6.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/commons-exec-1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/commons-io-2.5.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/commons-lang3-3.8.1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/compiler-21.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/core-0.53.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/dd-plist-1.23.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/error_prone_annotations-2.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/gluonfx-maven-plugin-1.0.16.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/graal-sdk-21.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/guava-25.1-android.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/guice-4.2.1-no_aop.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/httpclient-4.3.5.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/httpcore-4.3.2.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/j2objc-annotations-1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/javax.inject-1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/jcl-over-slf4j-1.6.2.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/jsr250-api-1.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/jsr305-3.0.2.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/materialfx-11.13.5.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-aether-provider-3.3.9.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-artifact-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-builder-support-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-core-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-invoker-2.2.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-model-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-model-builder-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-plugin-api-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-repository-metadata-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-resolver-api-1.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-resolver-impl-1.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-resolver-provider-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-resolver-spi-1.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-resolver-util-1.3.1.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-settings-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/maven-settings-builder-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/RJars/closure-compiler-v20210601.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Documents/RJars/closure-compiler-v20210601.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

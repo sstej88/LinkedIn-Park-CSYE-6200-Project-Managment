@@ -1,6 +1,8 @@
 package com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class DatabaseConnector {
     public void insertLoginDetailsToDB(String name, String username, String password, String role) throws Exception {
@@ -161,6 +163,41 @@ public class DatabaseConnector {
         }
     }
 
+    public void updateTask(String workID, String TName, String status, String UName, String Name, String description, LocalDate finishDate) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"', finish_date='"+finishDate+"' WHERE task_id='"+workID+"';";
+            st.executeUpdate(query);
+            st.close();
+            conn.close();
+        }
+        else {
+            System.out.println("Unable to Connect to database");
+        }
+    }
+
+    public String getUsername(String name) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM login_details WHERE name = '"+name+"'");
+            rs.next();
+            String username = rs.getString("username");
+            st.close();
+            conn.close();
+            return username;
+        }
+        else {
+            System.out.println("Unable to Connect to database");
+            return "Database Not Connected to Get Username";
+        }
+    }
+
     public void getTaskInfo(String workID) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
@@ -186,5 +223,27 @@ public class DatabaseConnector {
         else {
             System.out.println("Unable to Connect to database");
         }
+    }
+
+    public ArrayList<Users> getTeamMembersList() throws Exception {
+        ArrayList<Users> outPutList = new ArrayList<Users>();
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT name, username FROM login_details WHERE role = \"Team Member\";");
+            while(rs.next()) {
+                Users objUser = new Users();
+                objUser.name = rs.getString(1);
+                objUser.username = rs.getString(2);
+                outPutList.add(objUser);
+            }
+        }
+        else {
+            System.out.println("Unable to Connect to database");
+        }
+        return outPutList;
     }
 }

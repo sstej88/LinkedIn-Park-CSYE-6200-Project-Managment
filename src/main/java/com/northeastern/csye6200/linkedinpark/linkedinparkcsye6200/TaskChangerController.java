@@ -6,17 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class TaskChangerController implements Initializable {
     private Stage stage;
     private Scene scene;
+
+    private ArrayList<Users> memberList = new ArrayList<Users>();
 
     public static String workID;
     public static String taskName;
@@ -36,10 +37,28 @@ public class TaskChangerController implements Initializable {
     TextField task_name_input;
 
     @FXML
-    ComboBox task_status_input;
+    Label work_id;
 
     @FXML
-    Label work_id;
+    RadioButton start;
+
+    @FXML
+    RadioButton running;
+
+    @FXML
+    RadioButton done;
+
+    @FXML
+    ToggleGroup status_input = new ToggleGroup();
+
+    @FXML
+    TextArea description_input;
+
+    @FXML
+    DatePicker finish_date_input;
+
+    @FXML
+    ComboBox assignTo;
 
     @FXML
     protected void getBackIntoWorkItems(ActionEvent e) throws Exception {
@@ -50,6 +69,28 @@ public class TaskChangerController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
+
+    @FXML
+    protected void deleteTask(ActionEvent e) throws Exception {
+        DatabaseConnector dbs = new DatabaseConnector();
+        dbs.deleteTask(workID, assignedByUsername);
+        getBackIntoWorkItems(e);
+    }
+    @FXML
+    protected void updateTask(ActionEvent e) throws Exception {
+        DatabaseConnector dbs = new DatabaseConnector();
+        String status;
+        if(start.isSelected()) {
+            status = "Start";
+        }
+        else if(running.isSelected()) {
+            status = "Running";
+        }
+        else {
+            status = "Done";
+        }
+        dbs.updateTask(workID, task_name_input.getText(), status, dbs.getUsername((String) assignTo.getValue()), (String) assignTo.getValue(), description_input.getText(), finish_date_input.getValue());
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         work_id.setText("View and Update the Task : Work ID - "+workID);
@@ -59,9 +100,40 @@ public class TaskChangerController implements Initializable {
             work_id_input.setText(workID);
             work_id_input.setDisable(true);
             task_name_input.setText(taskName);
-            task_status_input.getItems().add("Yet to Start");
-            task_status_input.getItems().add("Currently Running");
-            task_status_input.getItems().add("Completed Successfully!");
+            start.setToggleGroup(status_input);
+            running.setToggleGroup(status_input);
+            done.setToggleGroup(status_input);
+
+            if(taskStatus.equals("Start")) {
+                start.setSelected(true);
+            }
+            else if(taskStatus.equals("Running")) {
+                running.setSelected(true);
+            }
+            else if(taskStatus.equals("Done")) {
+                done.setSelected(true);
+            }
+
+            description_input.setText(taskDescription);
+
+            finish_date_input.setPromptText(finishDate);
+
+            try {
+                dbs = new DatabaseConnector();
+                memberList = dbs.getTeamMembersList();
+
+                memberList = memberList;
+
+                for (Users element : memberList) {
+                    assignTo.getItems().add(element.name);
+                }
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            assignTo.setPromptText(assignedToName);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

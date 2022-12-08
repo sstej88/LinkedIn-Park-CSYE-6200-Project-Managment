@@ -32,5 +32,8 @@
     <orderEntry type="library" name="adapter-0.2.0" level="project" />
     <orderEntry type="library" name="materialfx-11.14.0-EA3" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.26" level="project" />
+    <orderEntry type="library" name="adapter-0.2.02" level="project" />
+    <orderEntry type="library" name="adapter-0.2.03" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-8.0.261" level="project" />
   </component>
 </module>
