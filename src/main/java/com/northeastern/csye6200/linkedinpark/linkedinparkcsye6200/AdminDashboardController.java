@@ -42,6 +42,13 @@ public class AdminDashboardController implements Initializable {
     Button btnAddTask;
 
     @FXML
+    Label BubbleLabelStart;
+    @FXML
+    Label BubbleLabelProgress;
+    @FXML
+    Label BubbleLabelCompleted;
+
+    @FXML
     protected void signout(ActionEvent e) throws Exception {
         LoggedInUser.name = "";
         LoggedInUser.role = "";
@@ -83,7 +90,9 @@ public class AdminDashboardController implements Initializable {
             controller.assigned_to.setText(TaskControllerYetToStart.taskList.get(i).assignedName);
 
             newTasks.getChildren().add(workItem);
+
         }
+        BubbleLabelStart.setText(TaskControllerYetToStart.taskList.size() + "");
         for(int i=0; i<TaskControllerRunning.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerRunning.fxml"));
@@ -95,6 +104,7 @@ public class AdminDashboardController implements Initializable {
             controller.assigned_to.setText(TaskControllerRunning.taskList.get(i).assignedName);
             currentTasks.getChildren().add(workItem);
         }
+        BubbleLabelProgress.setText(TaskControllerRunning.taskList.size() + "");
         for(int i=0; i<TaskControllerDone.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerDone.fxml"));
@@ -106,6 +116,7 @@ public class AdminDashboardController implements Initializable {
             controller.assigned_to.setText(TaskControllerDone.taskList.get(i).assignedName);
             completedTasks.getChildren().add(workItem);
         }
+        BubbleLabelCompleted.setText(TaskControllerDone.taskList.size() + "");
     }
 
     @Override
