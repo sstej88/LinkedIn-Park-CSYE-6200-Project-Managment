@@ -84,6 +84,10 @@ public class DatabaseConnector {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
             String query = "SELECT * FROM tasks WHERE assigned_by_username='"+username+"';";
+//            String newQuery = "SELECT task_id, task_name, task_description, task_status, isPriority, \n" +
+//                    "assigned_by_username, assigned_by_name, assigned_to_username, assigned_to_name, finish_date, \n" +
+//                    "CASE WHEN finish_date < CURDATE() Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks \n" +
+//                    "ORDER BY isPriority DESC, IsDeadlineMissed DESC, task_id ASC";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
 
