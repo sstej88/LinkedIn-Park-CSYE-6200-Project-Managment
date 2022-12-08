@@ -18,10 +18,8 @@ import java.util.ResourceBundle;
 public class TaskControllerYetToStart implements Initializable {
     private Stage stage;
     private Scene scene;
-    public static ArrayList<String> workIDs = new ArrayList<>();
-    public static ArrayList<String> workNames = new ArrayList<>();
-    public static ArrayList<String> assignedToUsernames = new ArrayList<>();
-    public static ArrayList<String> assignedToNames = new ArrayList<>();
+
+    public static ArrayList<DisplayTaskClass> taskList = new ArrayList<DisplayTaskClass>();
     @FXML
     Label work_id;
     @FXML

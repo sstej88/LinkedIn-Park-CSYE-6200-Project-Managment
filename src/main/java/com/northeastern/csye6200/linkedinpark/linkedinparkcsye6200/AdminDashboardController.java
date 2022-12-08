@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -17,6 +18,7 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class AdminDashboardController implements Initializable {
+    public static boolean isComingBack = false;
     DatabaseConnector dbs;
     private Stage stage;
     private Scene scene;
@@ -37,22 +39,35 @@ public class AdminDashboardController implements Initializable {
     Hyperlink usernameAndSignout;
 
     @FXML
+    Button btnAddTask;
+
+    @FXML
+    Label BubbleLabelStart;
+    @FXML
+    Label BubbleLabelProgress;
+    @FXML
+    Label BubbleLabelCompleted;
+
+    @FXML
     protected void signout(ActionEvent e) throws Exception {
         LoggedInUser.name = "";
         LoggedInUser.role = "";
         LoggedInUser.username = "";
-        TaskControllerYetToStart.workIDs.clear();
-        TaskControllerYetToStart.workNames.clear();
-        TaskControllerYetToStart.assignedToNames.clear();
-        TaskControllerYetToStart.assignedToUsernames.clear();
-        TaskControllerRunning.workIDs.clear();
-        TaskControllerRunning.workNames.clear();
-        TaskControllerRunning.assignedToNames.clear();
-        TaskControllerRunning.assignedToUsernames.clear();
-        TaskControllerDone.workIDs.clear();
-        TaskControllerDone.workNames.clear();
-        TaskControllerDone.assignedToNames.clear();
-        TaskControllerDone.assignedToUsernames.clear();
+        TaskControllerYetToStart.taskList.clear();
+        TaskControllerRunning.taskList.clear();
+        TaskControllerDone.taskList.clear();
+//        TaskControllerYetToStart.workIDs.clear();
+//        TaskControllerYetToStart.workNames.clear();
+//        TaskControllerYetToStart.assignedToNames.clear();
+//        TaskControllerYetToStart.assignedToUsernames.clear();
+//        TaskControllerRunning.workIDs.clear();
+//        TaskControllerRunning.workNames.clear();
+//        TaskControllerRunning.assignedToNames.clear();
+//        TaskControllerRunning.assignedToUsernames.clear();
+//        TaskControllerDone.workIDs.clear();
+//        TaskControllerDone.workNames.clear();
+//        TaskControllerDone.assignedToNames.clear();
+//        TaskControllerDone.assignedToUsernames.clear();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/master.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
@@ -64,36 +79,44 @@ public class AdminDashboardController implements Initializable {
     @FXML
     protected void getTasks() throws Exception {
         dbs.getTasksAssignedBy(LoggedInUser.username);
-        for(int i=0; i<TaskControllerYetToStart.assignedToUsernames.size();i++) {
+        for(int i=0; i<TaskControllerYetToStart.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerYetToStart.fxml"));
             BorderPane workItem = fxmlLoader.load();
             TaskControllerYetToStart controller = fxmlLoader.<TaskControllerYetToStart>getController();
-            controller.work_id.setText(TaskControllerYetToStart.workIDs.get(i));
-            controller.work_name.setText(TaskControllerYetToStart.workNames.get(i));
-            controller.assigned_to.setText(TaskControllerYetToStart.assignedToUsernames.get(i));
+
+            controller.work_id.setText(TaskControllerYetToStart.taskList.get(i).taskId.toString());
+            controller.work_name.setText(TaskControllerYetToStart.taskList.get(i).task_name);
+            controller.assigned_to.setText(TaskControllerYetToStart.taskList.get(i).assignedName);
+
             newTasks.getChildren().add(workItem);
+
         }
-        for(int i=0; i<TaskControllerRunning.assignedToUsernames.size();i++) {
+        BubbleLabelStart.setText(TaskControllerYetToStart.taskList.size() + "");
+        for(int i=0; i<TaskControllerRunning.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerRunning.fxml"));
             BorderPane workItem = fxmlLoader.load();
             TaskControllerRunning controller = fxmlLoader.<TaskControllerRunning>getController();
-            controller.work_id.setText(TaskControllerRunning.workIDs.get(i));
-            controller.work_name.setText(TaskControllerRunning.workNames.get(i));
-            controller.assigned_to.setText(TaskControllerRunning.assignedToUsernames.get(i));
+
+            controller.work_id.setText(TaskControllerRunning.taskList.get(i).taskId.toString());
+            controller.work_name.setText(TaskControllerRunning.taskList.get(i).task_name);
+            controller.assigned_to.setText(TaskControllerRunning.taskList.get(i).assignedName);
             currentTasks.getChildren().add(workItem);
         }
-        for(int i=0; i<TaskControllerDone.assignedToUsernames.size();i++) {
+        BubbleLabelProgress.setText(TaskControllerRunning.taskList.size() + "");
+        for(int i=0; i<TaskControllerDone.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerDone.fxml"));
             BorderPane workItem = fxmlLoader.load();
             TaskControllerDone controller = fxmlLoader.<TaskControllerDone>getController();
-            controller.work_id.setText(TaskControllerDone.workIDs.get(i));
-            controller.work_name.setText(TaskControllerDone.workNames.get(i));
-            controller.assigned_to.setText(TaskControllerDone.assignedToUsernames.get(i));
+
+            controller.work_id.setText(TaskControllerDone.taskList.get(i).taskId.toString());
+            controller.work_name.setText(TaskControllerDone.taskList.get(i).task_name);
+            controller.assigned_to.setText(TaskControllerDone.taskList.get(i).assignedName);
             completedTasks.getChildren().add(workItem);
         }
+        BubbleLabelCompleted.setText(TaskControllerDone.taskList.size() + "");
     }
 
     @Override
@@ -102,6 +125,15 @@ public class AdminDashboardController implements Initializable {
         welcomeAndName.setText("Welcome, "+LoggedInUser.name);
         position.setText(LoggedInUser.role);
         usernameAndSignout.setText("Signout ("+LoggedInUser.username+")");
+
+        // Enable/disable add task option according to user role
+        if(LoggedInUser.role.equals("Team Manager")) {
+            btnAddTask.setVisible(true);
+        }
+        else  {
+            btnAddTask.setVisible(false);
+        }
+
         try {
             getTasks();
         } catch (Exception e) {
