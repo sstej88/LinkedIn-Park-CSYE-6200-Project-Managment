@@ -83,55 +83,45 @@ public class DatabaseConnector {
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
-            String query = "SELECT * FROM tasks WHERE assigned_by_username='"+username+"';";
-//            String newQuery = "SELECT task_id, task_name, task_description, task_status, isPriority, \n" +
-//                    "assigned_by_username, assigned_by_name, assigned_to_username, assigned_to_name, finish_date, \n" +
-//                    "CASE WHEN finish_date < CURDATE() Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks \n" +
-//                    "ORDER BY isPriority DESC, IsDeadlineMissed DESC, task_id ASC";
+//            String query = "SELECT * FROM tasks WHERE assigned_by_username='"+username+"';";
+            String query = "SELECT task_id, task_name, task_description, task_status, isPriority, \n" +
+                    "assigned_by_username, assigned_by_name, assigned_to_username, assigned_to_name, finish_date, \n" +
+                    "CASE WHEN finish_date < CURDATE() Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks \n" +
+                    "ORDER BY isPriority DESC, IsDeadlineMissed DESC, task_id ASC";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
 
             // Clear previous list before new list is loaded
-            TaskControllerYetToStart.workIDs.clear();
-            TaskControllerYetToStart.workNames.clear();
-            TaskControllerYetToStart.assignedToUsernames.clear();
-            TaskControllerYetToStart.assignedToNames.clear();
 
-            TaskControllerRunning.workIDs.clear();
-            TaskControllerRunning.workNames.clear();
-            TaskControllerRunning.assignedToUsernames.clear();
-            TaskControllerRunning.assignedToNames.clear();
+            TaskControllerYetToStart.taskList.clear();
+            TaskControllerRunning.taskList.clear();
+            TaskControllerDone.taskList.clear();
 
-            TaskControllerDone.workIDs.clear();
-            TaskControllerDone.workNames.clear();
-            TaskControllerDone.assignedToUsernames.clear();
-            TaskControllerDone.assignedToNames.clear();
 
             // load new list
             while(rs.next()) {
-                String taskNumber = rs.getString(1);
-                String taskName = rs.getString(2);
-                String assignedToUsername = rs.getString(6);
-                String assignedToName = rs.getString(7);
-                String taskStatus = rs.getString(3);
-                if(taskStatus.equals("Start")) {
-                    System.out.println(taskStatus+" - "+taskNumber+" - "+taskName+" - "+assignedToName+" - "+assignedToUsername);
-                    TaskControllerYetToStart.workIDs.add(taskNumber);
-                    TaskControllerYetToStart.workNames.add(taskName);
-                    TaskControllerYetToStart.assignedToUsernames.add(assignedToUsername);
-                    TaskControllerYetToStart.assignedToNames.add(assignedToName);
+                DisplayTaskClass objTask = new DisplayTaskClass();
+                objTask.taskId = rs.getInt(1);
+                objTask.task_name = rs.getString(2);
+                objTask.task_description = rs.getString(3);
+                objTask.task_status = rs.getString(4);
+                objTask.isPriority = rs.getBoolean(5);
+                objTask.assignedByUserName = rs.getString(6);
+                objTask.assignedByName = rs.getString(7);
+                objTask.assignedUserName = rs.getString(8);
+                objTask.assignedName = rs.getString(9);
+                objTask.finish_date = rs.getDate(10);
+                objTask.isDeadlineMissed = rs.getBoolean(11);
+
+                if(objTask.task_status.equals("Start")) {
+                    System.out.println(objTask.task_status+" - "+objTask.taskId+" - "+objTask.task_name+" - "+objTask.assignedName+" - "+objTask.assignedUserName);
+                    TaskControllerYetToStart.taskList.add(objTask);
                 }
-                else if(taskStatus.equals("Running")) {
-                    TaskControllerRunning.workIDs.add(taskNumber);
-                    TaskControllerRunning.workNames.add(taskName);
-                    TaskControllerRunning.assignedToUsernames.add(assignedToUsername);
-                    TaskControllerRunning.assignedToNames.add(assignedToName);
+                else if(objTask.task_status.equals("Running")) {
+                    TaskControllerRunning.taskList.add(objTask);
                 }
-                else if(taskStatus.equals("Done")) {
-                    TaskControllerDone.workIDs.add(taskNumber);
-                    TaskControllerDone.workNames.add(taskName);
-                    TaskControllerDone.assignedToUsernames.add(assignedToUsername);
-                    TaskControllerDone.assignedToNames.add(assignedToName);
+                else if(objTask.task_status.equals("Done")) {
+                    TaskControllerDone.taskList.add(objTask);
                 }
             }
             st.close();
