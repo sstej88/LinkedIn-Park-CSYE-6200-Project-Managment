@@ -6,10 +6,7 @@ import javafx.scene.control.Label;
 import java.util.ArrayList;
 
 public class TaskControllerRunning {
-    public static ArrayList<String> workIDs = new ArrayList<>();
-    public static ArrayList<String> workNames = new ArrayList<>();
-    public static ArrayList<String> assignedToUsernames = new ArrayList<>();
-    public static ArrayList<String> assignedToNames = new ArrayList<>();
+    public static ArrayList<DisplayTaskClass> taskList = new ArrayList<DisplayTaskClass>();
     @FXML
     Label work_id;
     @FXML
