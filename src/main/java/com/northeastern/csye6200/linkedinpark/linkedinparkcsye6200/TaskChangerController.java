@@ -90,6 +90,7 @@ public class TaskChangerController implements Initializable {
             status = "Done";
         }
         dbs.updateTask(workID, task_name_input.getText(), status, dbs.getUsername((String) assignTo.getValue()), (String) assignTo.getValue(), description_input.getText(), finish_date_input.getValue());
+        getBackIntoWorkItems(e);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
