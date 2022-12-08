@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="148.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.TaskControllerRunning">
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0C2D48;" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="5.0" top="5.0" />
+            </BorderPane.margin>
+            <top>
+                <Label fx:id="work_id" prefHeight="17.0" prefWidth="285.0" text="Work ID" textFill="WHITE" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </Label>
+            </top>
+            <bottom>
+                <Label fx:id="assigned_to" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="307.0" text="Assigned To" textFill="WHITE" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </Label>
+            </bottom>
+            <center>
+                <Label fx:id="work_name" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="267.0" text="Work Name" textFill="WHITE" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </Label>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>
