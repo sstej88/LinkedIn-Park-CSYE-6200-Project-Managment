@@ -3,6 +3,7 @@ package com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200;
 import com.mysql.cj.log.Log;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -160,7 +161,7 @@ public class DatabaseConnector {
             st.close();
             conn.close();
         }
-        else {a
+        else {
             System.out.println("Unable to Connect to database");
         }
     }
@@ -226,30 +227,30 @@ public class DatabaseConnector {
             System.out.println("Unable to Connect to database");
         }
     }
-
-    public ArrayList<Users> getTeamMembersList() throws Exception {
-        ArrayList<Users> outPutList = new ArrayList<Users>();
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
-        if(conn!=null) {
-            System.out.println("Connected to database");
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT name, username FROM login_details WHERE role = \"Team Member\";");
-            while(rs.next()) {
-                Users objUser = new Users();
-                objUser.name = rs.getString(1);
-                objUser.username = rs.getString(2);
-                outPutList.add(objUser);
-            }
-        }
-        else {
-            System.out.println("Unable to Connect to database");
-        }
-        return outPutList;
-    }
-    
-    
+//
+//    public ArrayList<Users> getTeamMembersList() throws Exception {
+//        ArrayList<Users> outPutList = new ArrayList<Users>();
+//
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+//        if(conn!=null) {
+//            System.out.println("Connected to database");
+//            Statement st = conn.createStatement();
+//            ResultSet rs = st.executeQuery("SELECT name, username FROM login_details WHERE role = \"Team Member\";");
+//            while(rs.next()) {
+//                Users objUser = new Users();
+//                objUser.name = rs.getString(1);
+//                objUser.username = rs.getString(2);
+//                outPutList.add(objUser);
+//            }
+//        }
+//        else {
+//            System.out.println("Unable to Connect to database");
+//        }
+//        return outPutList;
+//    }
+//
+//
     public ArrayList<Users> getTeamMembersList() throws Exception {
         ArrayList<Users> outPutList = new ArrayList<Users>();
 
@@ -271,7 +272,7 @@ public class DatabaseConnector {
         }
         return outPutList;
     }
-//
+
     public void InsertNewTask(String Title, String Description, Date FinishByDate, Boolean isPriority, String assignedUserName, String assignedName, String assignedByUserName, String assignedByName) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);

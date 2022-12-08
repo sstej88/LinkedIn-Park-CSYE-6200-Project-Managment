@@ -72,7 +72,7 @@ public class SignupController implements Initializable {
             DatabaseConnector dbc = new DatabaseConnector();
             try {
                 if(dbc.checkForLoginDetails(username.getText())==0) {
-                    String userRole = teamManager.isSelected()?"Team Manager":"Team Leader";
+                    String userRole = teamManager.isSelected()?"Team Manager":"Team Member";
                     dbc.insertLoginDetailsToDB(name.getText(), username.getText(), password.getText(), userRole);
                     statusLabel.setText("Account Created Successfully");
                     statusLabel.setTextFill(Color.GREEN);
