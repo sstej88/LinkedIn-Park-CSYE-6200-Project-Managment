@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="JavaFx-Linkedin-Park" target="19" />
       <module name="Linkedin-Park-CSYE-6200" target="19" />
     </bytecodeTargetLevel>
   </component>
