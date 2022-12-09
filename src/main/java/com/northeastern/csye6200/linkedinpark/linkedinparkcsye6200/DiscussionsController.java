@@ -7,8 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -30,11 +33,13 @@ public class DiscussionsController implements Initializable {
     Label taskIdLabel;
     @FXML
     VBox messageWrap;
-
+    @FXML
+    ScrollPane wrapperScroll;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         taskIdLabel.setText(taskId.toString());
-//        try {
+        try {
+            fetchMessages();
 //            dbs = new DatabaseConnector();
 //            memberList = dbs.getTeamMembersList();
 //
@@ -44,9 +49,9 @@ public class DiscussionsController implements Initializable {
 //                assignTo.getItems().add(element.name);
 //            }
 //
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected void fetchMessages() throws Exception {
@@ -55,16 +60,24 @@ public class DiscussionsController implements Initializable {
         messageWrap.getChildren().clear();
 
         for(int i=0; i<fetchedMessages.size();i++) {
+            if(fetchedMessages.get(i).sendByUserName.equals(LoggedInUser.username))
+                DiscussionMessageBubble.isLoggedinUsersMessage = true;
+            DiscussionMessageBubble.message = fetchedMessages.get(i).message;
+            DiscussionMessageBubble.messageSenderName = fetchedMessages.get(i).sendByName;
+
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/DiscussionMessageBubble.fxml"));
             BorderPane messageItem = fxmlLoader.load();
             DiscussionMessageBubble controller = fxmlLoader.<DiscussionMessageBubble>getController();
-            if(fetchedMessages.get(i).sendByUserName == LoggedInUser.username)
-                controller.isLoggedinUsersMessage = true;
-            controller.message = fetchedMessages.get(i).message;
-            controller.messageSenderName = fetchedMessages.get(i).sendByName;
+
+//            if(fetchedMessages.get(i).sendByUserName.equals(LoggedInUser.username))
+//                controller.isLoggedinUsersMessage = true;
+//            controller.message = fetchedMessages.get(i).message;
+//            controller.messageSenderName = fetchedMessages.get(i).sendByName;
+
             messageWrap.getChildren().add(messageItem);
         }
+        wrapperScroll.setVvalue(1.0);
     }
     @FXML
     protected void addMessages(ActionEvent e) throws Exception {

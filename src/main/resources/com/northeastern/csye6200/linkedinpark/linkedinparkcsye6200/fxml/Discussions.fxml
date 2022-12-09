@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="568.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.DiscussionsController">
@@ -14,7 +15,10 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="messageWrap" layoutX="33.0" layoutY="56.0" prefHeight="428.0" prefWidth="506.0" />
+      <ScrollPane fx:id="wrapperScroll" layoutX="33.0" layoutY="56.0" prefHeight="428.0" prefWidth="506.0">
+         <content>
+            <VBox fx:id="messageWrap" prefHeight="427.0" prefWidth="486.0" />
+         </content></ScrollPane>
       <Button layoutX="452.0" layoutY="495.0" mnemonicParsing="false" onAction="#addMessages" prefHeight="49.0" prefWidth="89.0" text="Send" />
       <Label fx:id="taskIdLabel" layoutX="206.0" layoutY="25.0" text="20">
          <font>

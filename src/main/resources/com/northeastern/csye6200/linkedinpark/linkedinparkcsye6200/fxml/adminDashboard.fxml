@@ -21,7 +21,7 @@
       <MFXButton fx:id="btnAddTask" buttonType="RAISED" depthLevel="LEVEL3" layoutX="14.0" layoutY="605.0" onAction="#addTasks" prefHeight="41.0" prefWidth="278.0" style="-fx-background-color: #3f51b5;" text="Add Tasks" textFill="#fcfcfc" />
       <ScrollPane layoutX="14.0" layoutY="82.0" prefHeight="511.0" prefWidth="278.0">
          <content>
-            <VBox fx:id="newTasks" prefHeight="516.0" prefWidth="266.0">
+            <VBox fx:id="newTasks" prefHeight="516.0" prefWidth="263.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="268.0" style="-fx-border-color: #75E6DA; -fx-background-color: #75E6DA;" text="Tasks Yet To Start" />
                </children>
@@ -39,7 +39,7 @@
       </ScrollPane>
       <ScrollPane layoutX="646.0" layoutY="82.0" prefHeight="511.0" prefWidth="278.0">
          <content>
-            <VBox fx:id="completedTasks" prefHeight="516.0" prefWidth="260.0">
+            <VBox fx:id="completedTasks" prefHeight="516.0" prefWidth="263.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="268.0" style="-fx-border-color: #05445E; -fx-background-color: #05445E; -fx-text-fill: WHITE;" text="Completed" />
                </children>
