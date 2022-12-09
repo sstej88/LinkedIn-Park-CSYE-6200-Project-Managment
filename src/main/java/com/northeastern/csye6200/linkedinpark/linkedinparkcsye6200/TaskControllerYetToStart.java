@@ -48,4 +48,16 @@ public class TaskControllerYetToStart implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         work_name.setDisable(true);
     }
+
+
+    @FXML
+    protected void ShowDiscussion(ActionEvent e) throws Exception {
+        DiscussionsController.taskId = Integer.valueOf(work_id.getText());
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/Discussions.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
 }

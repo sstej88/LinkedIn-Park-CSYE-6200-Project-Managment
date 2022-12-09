@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="messageBubble" prefHeight="63.0" prefWidth="330.0" style="-fx-background-color: #add8e6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.DiscussionMessageBubble">
+   <children>
+      <Label fx:id="lblSenderName" alignment="BOTTOM_RIGHT" layoutX="206.0" layoutY="49.0" prefHeight="17.0" prefWidth="110.0" text="Rohit" textFill="WHITE" />
+      <Label fx:id="lblMessage" alignment="TOP_LEFT" layoutX="16.0" layoutY="16.0" prefHeight="35.0" prefWidth="299.0" text="Text message" textFill="WHITE" />
+   </children>
+</AnchorPane>
