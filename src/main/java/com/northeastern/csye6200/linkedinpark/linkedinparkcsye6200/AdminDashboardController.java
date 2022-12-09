@@ -49,6 +49,9 @@ public class AdminDashboardController implements Initializable {
     Label BubbleLabelCompleted;
 
     @FXML
+    Button viewReports;
+
+    @FXML
     protected void signout(ActionEvent e) throws Exception {
         LoggedInUser.name = "";
         LoggedInUser.role = "";
@@ -66,7 +69,12 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     protected void getTasks() throws Exception {
-        dbs.getTasksAssignedBy(LoggedInUser.username);
+        if(LoggedInUser.role.equals("Team Manager")) {
+            dbs.getTasksAssignedBy(LoggedInUser.username);
+        }
+        else {
+            dbs.getTasksAssignedTo(LoggedInUser.username);
+        }
         for(int i=0; i<TaskControllerYetToStart.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerYetToStart.fxml"));
@@ -126,6 +134,9 @@ public class AdminDashboardController implements Initializable {
             getTasks();
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+        if(LoggedInUser.role.equals("Team Member")) {
+            viewReports.setVisible(false);
         }
     }
 

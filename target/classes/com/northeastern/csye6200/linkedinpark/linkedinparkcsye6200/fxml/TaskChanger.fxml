@@ -114,16 +114,16 @@
          </center></BorderPane>
    </center>
    <bottom>
-      <BorderPane prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="90.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <right>
-            <MFXButton buttonType="RAISED" depthLevel="LEVEL3" onAction="#updateTask" prefHeight="27.0" prefWidth="165.0" style="-fx-background-color: #3f51b5;" text="Update Task" textFill="WHITE" BorderPane.alignment="CENTER">
+            <MFXButton fx:id="updateButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#updateTask" prefHeight="27.0" prefWidth="165.0" style="-fx-background-color: #3f51b5;" text="Update Task" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </BorderPane.margin>
             </MFXButton>
          </right>
          <left>
-            <MFXButton buttonType="RAISED" depthLevel="LEVEL3" onAction="#deleteTask" prefHeight="27.0" prefWidth="159.0" style="-fx-background-color: #b3103e;" text="Delete" textFill="WHITE" BorderPane.alignment="CENTER">
+            <MFXButton fx:id="deleteButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#deleteTask" prefHeight="27.0" prefWidth="159.0" style="-fx-background-color: #b3103e;" text="Delete" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </BorderPane.margin>
@@ -131,6 +131,13 @@
          </left>
          <center>
             <MFXButton buttonType="RAISED" depthLevel="LEVEL3" onAction="#getBackIntoWorkItems" prefHeight="27.0" prefWidth="204.0" style="-fx-background-color: #253e40;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER" />
-         </center></BorderPane>
+         </center>
+         <bottom>
+            <Label fx:id="statusMessage" text="Status Message" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom></BorderPane>
    </bottom>
 </BorderPane>
