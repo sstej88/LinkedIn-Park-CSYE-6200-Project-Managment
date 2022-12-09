@@ -22,10 +22,10 @@
       <Button fx:id="btnFinish" layoutX="224.0" layoutY="355.0" mnemonicParsing="false" onAction="#ValidateNewTask" prefHeight="31.0" prefWidth="160.0" text="Finish" />
       <Button fx:id="btnBack" layoutX="525.0" layoutY="29.0" mnemonicParsing="false" onAction="#ReturnToDashboard" text="Back" />
       <Label layoutX="36.0" layoutY="194.0" text="Assign to " />
-      <Label layoutX="365.0" layoutY="194.0" text="Finish before (optional)" />
+      <Label layoutX="365.0" layoutY="194.0" text="Finish before" />
       <CheckBox fx:id="togglePriority" layoutX="36.0" layoutY="263.0" mnemonicParsing="false" text="Set as priority task" />
       <ComboBox fx:id="assignTo" layoutX="36.0" layoutY="221.0" prefHeight="27.0" prefWidth="243.0" />
       <DatePicker fx:id="finishByDate" layoutX="365.0" layoutY="222.0" prefHeight="26.0" prefWidth="201.0" />
-      <Label fx:id="errorLabel" layoutX="160.0" layoutY="314.0" prefHeight="18.0" prefWidth="289.0" textAlignment="CENTER" textFill="RED" />
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="314.0" prefHeight="18.0" prefWidth="289.0" textAlignment="CENTER" textFill="RED" />
    </children>
 </AnchorPane>

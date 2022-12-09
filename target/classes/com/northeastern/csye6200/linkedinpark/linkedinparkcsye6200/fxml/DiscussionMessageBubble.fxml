@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane fx:id="messageBubble" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="480.0" style="-fx-border-radius: 0; -fx-background-color: #6d98bf; -fx-border-color: #e0e0e0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.DiscussionMessageBubble">
+   <center>
+      <Label fx:id="lblMessage" alignment="TOP_LEFT" prefHeight="52.0" prefWidth="452.0" text="Message" textFill="WHITE" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <Label fx:id="lblSenderName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="497.0" text="Label" textFill="WHITE" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

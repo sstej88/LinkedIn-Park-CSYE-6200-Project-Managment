@@ -186,6 +186,9 @@ public class TaskChangerController implements Initializable {
                 isPriorityTask.setSelected(true);
             }
 
+            if(LoggedInUser.role.equals("Team Member")) {
+                isPriorityTask.setDisable(true);
+            }
 
         } catch (Exception e) {
             throw new RuntimeException(e);

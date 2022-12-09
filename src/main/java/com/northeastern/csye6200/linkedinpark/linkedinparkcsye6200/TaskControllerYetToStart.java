@@ -23,9 +23,12 @@ public class TaskControllerYetToStart implements Initializable {
     @FXML
     Label work_id;
     @FXML
-    Button work_name;
+    Label work_name;
     @FXML
     Label assigned_to;
+
+    @FXML
+    Button prioIcon;
 
     @FXML
     protected void changeTheTaskValues(ActionEvent e) throws Exception {
@@ -46,7 +49,7 @@ public class TaskControllerYetToStart implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        work_name.setDisable(true);
+
     }
 
 

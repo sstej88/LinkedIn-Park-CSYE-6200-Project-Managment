@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,47 +9,50 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.AdminDashboardController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="938.0" style="-fx-background-image: url(&quot;file:///Users/saitejsunkara/Desktop/OOD-Project/LinkedIn-Park-CSYE-6200-Project-Managment/src/main/resources/com/northeastern/csye6200/linkedinpark/linkedinparkcsye6200/assets/bck6.png&quot;); -fx-background-position: center center; -fx-background-repeat: stretch;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.AdminDashboardController">
    <children>
-      <Label layoutX="426.0" layoutY="14.0" text="Dashboard">
+      <Label layoutX="345.0" layoutY="13.0" text="Task Planner Dashboard" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Label fx:id="welcomeAndName" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="53.0" prefHeight="17.0" prefWidth="188.0" text="Welcome, Your Name" />
-      <Label fx:id="position" alignment="CENTER" layoutX="358.0" layoutY="53.0" prefHeight="17.0" prefWidth="223.0" text="Position" />
-      <Hyperlink fx:id="usernameAndSignout" alignment="CENTER" contentDisplay="CENTER" layoutX="732.0" layoutY="50.0" onAction="#signout" prefHeight="23.0" prefWidth="192.0" text="Signout (Username)" />
-      <MFXButton fx:id="btnAddTask" buttonType="RAISED" depthLevel="LEVEL3" layoutX="14.0" layoutY="605.0" onAction="#addTasks" prefHeight="41.0" prefWidth="278.0" style="-fx-background-color: #3f51b5;" text="Add Tasks" textFill="#fcfcfc" />
-      <ScrollPane layoutX="14.0" layoutY="82.0" prefHeight="511.0" prefWidth="278.0">
+      <Label fx:id="welcomeAndName" layoutX="14.0" layoutY="53.0" prefHeight="17.0" prefWidth="276.0" text="Welcome, Your Name" textFill="WHITE" />
+      <Hyperlink fx:id="usernameAndSignout" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="728.0" layoutY="16.0" onAction="#signout" prefHeight="23.0" prefWidth="192.0" text="Signout (Username)" />
+      <MFXButton fx:id="btnAddTask" buttonType="RAISED" depthLevel="LEVEL3" layoutX="14.0" layoutY="605.0" onAction="#addTasks" prefHeight="41.0" prefWidth="278.0" style="-fx-background-color: #ba1e42;" text="Add Tasks" textFill="#fcfcfc" />
+      <ScrollPane layoutX="14.0" layoutY="133.0" prefHeight="460.0" prefWidth="278.0">
          <content>
-            <VBox fx:id="newTasks" prefHeight="516.0" prefWidth="263.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="268.0" style="-fx-border-color: #75E6DA; -fx-background-color: #75E6DA;" text="Tasks Yet To Start" />
-               </children>
-            </VBox>
+            <VBox fx:id="newTasks" prefHeight="457.0" prefWidth="275.0" />
          </content>
       </ScrollPane>
-      <ScrollPane layoutX="331.0" layoutY="82.0" prefHeight="511.0" prefWidth="278.0">
+      <ScrollPane layoutX="331.0" layoutY="134.0" prefHeight="459.0" prefWidth="278.0">
          <content>
-            <VBox fx:id="currentTasks" prefHeight="517.0" prefWidth="263.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="268.0" style="-fx-border-color: #189AB4; -fx-background-color: #189AB4; -fx-text-fill: WHITE;" text="Currently, In Progress" />
-               </children>
-            </VBox>
+            <VBox fx:id="currentTasks" prefHeight="457.0" prefWidth="275.0" />
          </content>
       </ScrollPane>
-      <ScrollPane layoutX="646.0" layoutY="82.0" prefHeight="511.0" prefWidth="278.0">
+      <ScrollPane layoutX="646.0" layoutY="133.0" prefHeight="460.0" prefWidth="278.0">
          <content>
-            <VBox fx:id="completedTasks" prefHeight="516.0" prefWidth="263.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="268.0" style="-fx-border-color: #05445E; -fx-background-color: #05445E; -fx-text-fill: WHITE;" text="Completed" />
-               </children>
-            </VBox>
+            <VBox fx:id="completedTasks" prefHeight="457.0" prefWidth="275.0" />
          </content>
       </ScrollPane>
       <MFXButton fx:id="viewReports" layoutX="646.0" layoutY="605.0" onAction="#viewReports" prefHeight="41.0" prefWidth="278.0" style="-fx-background-color: #014510;" text="View Reports" textFill="WHITE" />
-      <Label fx:id="BubbleLabelStart" alignment="CENTER" layoutX="267.0" layoutY="50.0" prefHeight="24.0" prefWidth="25.0" style="-fx-background-color: #f55742; -fx-background-radius: 20;" text="324" textAlignment="CENTER" textFill="WHITE" />
-      <Label fx:id="BubbleLabelProgress" alignment="CENTER" layoutX="569.0" layoutY="50.0" prefHeight="24.0" prefWidth="25.0" style="-fx-background-color: #f55742; -fx-background-radius: 20;" text="324" textAlignment="CENTER" textFill="WHITE" />
-      <Label fx:id="BubbleLabelCompleted" alignment="CENTER" layoutX="666.0" layoutY="50.0" prefHeight="24.0" prefWidth="25.0" style="-fx-background-color: #f55742; -fx-background-radius: 20;" text="324" textAlignment="CENTER" textFill="WHITE" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="81.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="278.0" style="-fx-border-color: #D2B391; -fx-background-color: #D2B391;" text="Tasks Yet To Start" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="82.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="278.0" style="-fx-border-color: #D2B391; -fx-background-color: #D2B391;" text="Currently, In Progress" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="646.0" layoutY="82.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="278.0" style="-fx-border-color: #D2B391; -fx-background-color: #D2B391;" text="Completed" />
+      <Label fx:id="BubbleLabelStart" alignment="CENTER" layoutX="237.0" layoutY="96.0" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #05445E; -fx-background-radius: 20;" text="324" textAlignment="CENTER" textFill="WHITE">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </Label>
+      <Label fx:id="BubbleLabelProgress" alignment="CENTER" layoutX="554.0" layoutY="97.0" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #05445E; -fx-background-radius: 20;" text="324" textAlignment="CENTER" textFill="WHITE">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </Label>
+      <Label fx:id="BubbleLabelCompleted" alignment="CENTER" layoutX="864.0" layoutY="97.0" prefHeight="20.0" prefWidth="40.0" style="-fx-background-color: #05445E; -fx-background-radius: 20;" text="324" textAlignment="CENTER" textFill="WHITE">
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
+      </Label>
+      <Label fx:id="position" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="690.0" layoutY="54.0" prefHeight="17.0" prefWidth="223.0" text="Position" textFill="WHITE" />
    </children>
 </AnchorPane>

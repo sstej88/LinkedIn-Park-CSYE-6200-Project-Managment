@@ -92,6 +92,16 @@ public class AddTaskController implements Initializable {
         }
         if(finishByDate.getValue() != null) {
             getDatePickerDate = java.sql.Date.valueOf(finishByDate.getValue());
+            if(finishByDate.getValue().isBefore(LocalDate.now())) {
+                errorLabel.setText("Please select a future date.");
+                errorLabel.setTextFill(Color.RED);
+                return;
+            }
+        }
+        else {
+            errorLabel.setText("Please enter a finish by date.");
+            errorLabel.setTextFill(Color.RED);
+            return;
         }
         assignedName = assignTo.getValue().toString();
 

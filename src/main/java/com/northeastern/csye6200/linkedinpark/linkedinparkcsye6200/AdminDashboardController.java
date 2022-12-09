@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -78,12 +79,15 @@ public class AdminDashboardController implements Initializable {
         for(int i=0; i<TaskControllerYetToStart.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerYetToStart.fxml"));
-            BorderPane workItem = fxmlLoader.load();
+            AnchorPane workItem = fxmlLoader.load();
             TaskControllerYetToStart controller = fxmlLoader.<TaskControllerYetToStart>getController();
 
             controller.work_id.setText(TaskControllerYetToStart.taskList.get(i).taskId.toString());
             controller.work_name.setText(TaskControllerYetToStart.taskList.get(i).task_name);
             controller.assigned_to.setText(TaskControllerYetToStart.taskList.get(i).assignedName);
+            if(!TaskControllerYetToStart.taskList.get(i).isPriority) {
+                controller.prioIcon.setVisible(false);
+            }
 
             newTasks.getChildren().add(workItem);
 
@@ -92,7 +96,7 @@ public class AdminDashboardController implements Initializable {
         for(int i=0; i<TaskControllerRunning.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerRunning.fxml"));
-            BorderPane workItem = fxmlLoader.load();
+            AnchorPane workItem = fxmlLoader.load();
             TaskControllerRunning controller = fxmlLoader.<TaskControllerRunning>getController();
 
             controller.work_id.setText(TaskControllerRunning.taskList.get(i).taskId.toString());
@@ -104,7 +108,7 @@ public class AdminDashboardController implements Initializable {
         for(int i=0; i<TaskControllerDone.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerDone.fxml"));
-            BorderPane workItem = fxmlLoader.load();
+            AnchorPane workItem = fxmlLoader.load();
             TaskControllerDone controller = fxmlLoader.<TaskControllerDone>getController();
 
             controller.work_id.setText(TaskControllerDone.taskList.get(i).taskId.toString());
