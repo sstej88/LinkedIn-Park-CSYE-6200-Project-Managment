@@ -334,4 +334,31 @@ public class DatabaseConnector {
         }
     }
 
+    public ResultSet getPoorPerformance() throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT \tA.username, \n" +
+                    "\t\tA.name, \n" +
+                    "\t\tCOUNT(A.task_id) AS 'TotalTasks',\n" +
+                    "\t\tCOUNT(IF(A.task_status <> 'Done', 1, NULL)) AS 'PendingTasks',\n" +
+                    "        COUNT(IF(A.finish_date < CURDATE() && A.task_status <> 'Done', 1, NULL)) AS 'MissedDeadlines', \n" +
+                    "        COUNT(IF(A.isPriority = 1 && A.task_status <> 'Done', 1, NULL)) AS 'PriorityPendingTasks'\n" +
+                    "FROM (\n" +
+                    "\tSELECT * \n" +
+                    "\tFROM login_details\n" +
+                    "\tLEFT JOIN tasks on login_details.username = tasks.assigned_to_username\n" +
+                    "    WHERE login_details.role='Team Member'\n" +
+                    "    ) AS A\n" +
+                    "GROUP BY A.username, A.name\n" +
+                    "ORDER BY MissedDeadlines DESC, PendingTasks DESC;");
+            return rs;
+        }
+        else {
+            System.out.println("Unable to Connect to database");
+            return null;
+        }
+    }
 }

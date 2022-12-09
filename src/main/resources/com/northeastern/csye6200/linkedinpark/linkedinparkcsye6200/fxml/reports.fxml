@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -69,12 +70,10 @@
       </Label>
       <ScrollPane layoutX="18.0" layoutY="544.0" prefHeight="208.0" prefWidth="865.0">
          <content>
-            <VBox prefHeight="200.0" prefWidth="846.0">
-               <children>
-                  <AnchorPane prefHeight="46.0" prefWidth="846.0" />
-               </children></VBox>
+            <VBox fx:id="lowPerformanceTasks" prefHeight="200.0" prefWidth="846.0" />
          </content>
       </ScrollPane>
+      <MFXButton fx:id="back" buttonType="RAISED" depthLevel="LEVEL3" layoutX="744.0" layoutY="12.0" onAction="#getBackIntoWorkItems" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #130433;" text="Back" textFill="WHITE" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
