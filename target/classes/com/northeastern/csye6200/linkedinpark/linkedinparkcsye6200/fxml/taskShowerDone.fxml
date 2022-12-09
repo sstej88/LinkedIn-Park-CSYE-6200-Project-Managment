@@ -11,7 +11,7 @@
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
    <children>
-      <AnchorPane layoutX="7.0" layoutY="4.0" prefHeight="112.0" prefWidth="254.0" style="-fx-background-color: #342432;">
+      <AnchorPane layoutX="7.0" layoutY="4.0" prefHeight="112.0" prefWidth="254.0" style="-fx-background-color: #3B0404;">
          <children>
             <Label fx:id="work_id" layoutX="59.0" layoutY="14.0" prefHeight="17.0" prefWidth="185.0" text="45" textFill="WHITE" underline="true">
                <font>
@@ -31,6 +31,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
+            <Button layoutX="114.0" layoutY="111.0" mnemonicParsing="false" onAction="#showDiscussion" prefHeight="31.0" prefWidth="58.0" style="-fx-border-radius: 4; -fx-background-color: #955C7F; -fx-background-image: url(&quot;file:///Users/saitejsunkara/Desktop/OOD-Project/LinkedIn-Park-CSYE-6200-Project-Managment/src/main/resources/com/northeastern/csye6200/linkedinpark/linkedinparkcsye6200/assets/bck9.png&quot;); -fx-background-position: center center; -fx-background-repeat: stretch;" />
          </children>
       </AnchorPane>
    </children>

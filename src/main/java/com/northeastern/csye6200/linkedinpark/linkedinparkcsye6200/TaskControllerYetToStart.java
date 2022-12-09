@@ -54,7 +54,7 @@ public class TaskControllerYetToStart implements Initializable {
 
 
     @FXML
-    protected void ShowDiscussion(ActionEvent e) throws Exception {
+    protected void showDiscussion(ActionEvent e) throws Exception {
         DiscussionsController.taskId = Integer.valueOf(work_id.getText());
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/Discussions.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
