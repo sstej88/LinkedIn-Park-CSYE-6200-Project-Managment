@@ -46,6 +46,9 @@ public class ReportsController implements Initializable {
     Button back;
 
     @FXML
+    Label priority_pending;
+
+    @FXML
     protected void getBackIntoWorkItems(ActionEvent e) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/adminDashboard.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -83,7 +86,9 @@ public class ReportsController implements Initializable {
             total_tasks.setText(rs.getString("TotalTasks"));
             pending_tasks.setText(rs.getString("PendingTasks"));
             overdue_tasks.setText(rs.getString("MissedDeadlines"));
+            priority_pending.setText(rs.getString("PriorityPendingTasks"));
             overdue_tasks.setTextFill(Color.RED);
+            priority_pending.setTextFill(Color.RED);
 
             ResultSet poorPerformanceRS = dbs.getPoorPerformance();
             LowPerformanceReports.pfm.clear();

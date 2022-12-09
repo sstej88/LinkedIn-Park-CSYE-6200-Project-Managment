@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -46,6 +47,7 @@
                       <RowConstraints maxHeight="401.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="531.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="531.0" minHeight="10.0" prefHeight="156.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="531.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="531.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="531.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
                     </rowConstraints>
@@ -107,6 +109,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </ComboBox>
+                        <CheckBox fx:id="isPriorityTask" mnemonicParsing="false" prefHeight="18.0" prefWidth="148.0" text="Is this task Priority?" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </center>
@@ -114,7 +117,7 @@
          </center></BorderPane>
    </center>
    <bottom>
-      <BorderPane prefHeight="90.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="86.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <right>
             <MFXButton fx:id="updateButton" buttonType="RAISED" depthLevel="LEVEL3" onAction="#updateTask" prefHeight="27.0" prefWidth="165.0" style="-fx-background-color: #3f51b5;" text="Update Task" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>

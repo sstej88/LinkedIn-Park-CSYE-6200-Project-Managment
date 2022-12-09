@@ -222,13 +222,13 @@ public class DatabaseConnector {
         }
     }
 
-    public void updateTask(String workID, String TName, String status, String UName, String Name, String description, LocalDate finishDate) throws Exception {
+    public void updateTask(String workID, String isPriority, String TName, String status, String UName, String Name, String description, LocalDate finishDate) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
-            String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"', finish_date='"+finishDate+"' WHERE task_id='"+workID+"';";
+            String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"', isPriority='"+isPriority+"', finish_date='"+finishDate+"' WHERE task_id='"+workID+"';";
             System.out.println(query);
             st.executeUpdate(query);
             st.close();
@@ -239,13 +239,13 @@ public class DatabaseConnector {
         }
     }
 
-    public void updateTask(String workID, String TName, String status, String UName, String Name, String description) throws Exception {
+    public void updateTask(String workID, String isPriority, String TName, String status, String UName, String Name, String description) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
-            String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"' WHERE task_id='"+workID+"';";
+            String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"', isPriority='"+isPriority+"' WHERE task_id='"+workID+"';";
             System.out.println(query);
             st.executeUpdate(query);
             st.close();

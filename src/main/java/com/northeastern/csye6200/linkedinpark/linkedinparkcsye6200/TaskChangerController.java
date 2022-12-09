@@ -74,6 +74,9 @@ public class TaskChangerController implements Initializable {
     Label statusMessage;
 
     @FXML
+    CheckBox isPriorityTask;
+
+    @FXML
     protected void getBackIntoWorkItems(ActionEvent e) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/adminDashboard.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -94,6 +97,10 @@ public class TaskChangerController implements Initializable {
         DatabaseConnector dbs = new DatabaseConnector();
         String status = "";
         String assignedTo = assignedToName;
+        String isPriorityTaskLocal = "0";
+        if(isPriorityTask.isSelected()) {
+            isPriorityTaskLocal = "1";
+        }
         if(start.isSelected()) {
             status = "Start";
         }
@@ -118,12 +125,12 @@ public class TaskChangerController implements Initializable {
                 statusMessage.setTextFill(Color.RED);
             }
             else {
-                dbs.updateTask(workID, task_name_input.getText(), status, dbs.getUsername(assignedTo), assignedTo, description_input.getText(), finish_date_input.getValue());
+                dbs.updateTask(workID, isPriorityTaskLocal, task_name_input.getText(), status, dbs.getUsername(assignedTo), assignedTo, description_input.getText(), finish_date_input.getValue());
                 getBackIntoWorkItems(e);
             }
         }
         else {
-            dbs.updateTask(workID, task_name_input.getText(), status, dbs.getUsername(assignedTo), assignedTo, description_input.getText());
+            dbs.updateTask(workID, isPriorityTaskLocal, task_name_input.getText(), status, dbs.getUsername(assignedTo), assignedTo, description_input.getText());
             getBackIntoWorkItems(e);
         }
 
@@ -171,6 +178,14 @@ public class TaskChangerController implements Initializable {
             }
 
             assignTo.setPromptText(assignedToName);
+
+            if(isPriority.equals("0")) {
+                isPriorityTask.setSelected(false);
+            }
+            else {
+                isPriorityTask.setSelected(true);
+            }
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);

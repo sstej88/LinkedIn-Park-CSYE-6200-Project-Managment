@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Box?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.ReportsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="801.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.ReportsController">
    <children>
       <Label layoutX="293.0" layoutY="25.0" text="Reports - Project Management System">
          <font>
@@ -30,50 +30,61 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Box depth="100" disable="true" height="100.0" layoutX="188.0" layoutY="467.0" width="150.0" AnchorPane.topAnchor="367.0" />
-      <Box depth="100" disable="true" height="100.0" layoutX="459.0" layoutY="467.0" width="150.0" AnchorPane.topAnchor="367.0" />
-      <Box depth="100" disable="true" height="100.0" layoutX="713.0" layoutY="467.0" width="150.0" AnchorPane.topAnchor="367.0" />
-      <Label layoutX="153.0" layoutY="317.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #05445E;" text="Total Tasks" textFill="WHITE">
+      <Box depth="100" disable="true" height="100.0" layoutX="107.0" layoutY="431.0" width="150.0" AnchorPane.topAnchor="381.0" />
+      <Box depth="100" disable="true" height="100.0" layoutX="378.0" layoutY="431.0" width="150.0" AnchorPane.topAnchor="381.0" />
+      <Box depth="100" disable="true" height="100.0" layoutX="632.0" layoutY="431.0" width="150.0" AnchorPane.topAnchor="381.0" />
+      <Label layoutX="74.0" layoutY="339.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #05445E;" text="Total Tasks" textFill="WHITE">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label layoutX="415.0" layoutY="317.0" style="-fx-background-color: #05445E;" text="Pending Tasks" textFill="WHITE">
+      <Label layoutX="333.0" layoutY="339.0" style="-fx-background-color: #05445E;" text="Pending Tasks" textFill="WHITE">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label layoutX="663.0" layoutY="317.0" style="-fx-background-color: #05445E;" text="Overdue Tasks" textFill="WHITE">
+      <Label layoutX="586.0" layoutY="339.0" style="-fx-background-color: #05445E;" text="Overdue Tasks" textFill="WHITE">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="total_tasks" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="411.0" prefHeight="23.0" prefWidth="142.0" text="Label">
+      <Label fx:id="total_tasks" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="423.0" prefHeight="23.0" prefWidth="142.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="pending_tasks" alignment="CENTER" contentDisplay="CENTER" layoutX="388.0" layoutY="411.0" prefHeight="23.0" prefWidth="142.0" text="Label">
+      <Label fx:id="pending_tasks" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="425.0" prefHeight="23.0" prefWidth="142.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="overdue_tasks" alignment="CENTER" contentDisplay="CENTER" layoutX="638.0" layoutY="411.0" prefHeight="23.0" prefWidth="142.0" text="Label">
+      <Label fx:id="overdue_tasks" alignment="CENTER" contentDisplay="CENTER" layoutX="561.0" layoutY="423.0" prefHeight="23.0" prefWidth="142.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="342.0" layoutY="498.0" prefHeight="46.0" prefWidth="235.0" text="Low Performance Reports">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="342.0" layoutY="509.0" prefHeight="46.0" prefWidth="235.0" style="-fx-background-color: #241236;" text="Issues Held by Team Members" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="18.0" layoutY="544.0" prefHeight="208.0" prefWidth="865.0">
+      <ScrollPane layoutX="18.0" layoutY="561.0" prefHeight="208.0" prefWidth="865.0">
          <content>
             <VBox fx:id="lowPerformanceTasks" prefHeight="200.0" prefWidth="846.0" />
          </content>
       </ScrollPane>
       <MFXButton fx:id="back" buttonType="RAISED" depthLevel="LEVEL3" layoutX="744.0" layoutY="12.0" onAction="#getBackIntoWorkItems" prefHeight="27.0" prefWidth="123.0" style="-fx-background-color: #130433;" text="Back" textFill="WHITE" />
+      <Box depth="100" disable="true" height="100.0" layoutX="844.0" layoutY="435.0" width="150.0" />
+      <Label layoutX="779.0" layoutY="339.0" style="-fx-background-color: #05445E;" text="Pending Priority Tasks" textFill="WHITE">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label fx:id="priority_pending" alignment="CENTER" contentDisplay="CENTER" layoutX="775.0" layoutY="418.0" prefHeight="23.0" prefWidth="142.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
