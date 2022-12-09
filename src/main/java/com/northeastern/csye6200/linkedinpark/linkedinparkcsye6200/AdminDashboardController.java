@@ -56,18 +56,6 @@ public class AdminDashboardController implements Initializable {
         TaskControllerYetToStart.taskList.clear();
         TaskControllerRunning.taskList.clear();
         TaskControllerDone.taskList.clear();
-//        TaskControllerYetToStart.workIDs.clear();
-//        TaskControllerYetToStart.workNames.clear();
-//        TaskControllerYetToStart.assignedToNames.clear();
-//        TaskControllerYetToStart.assignedToUsernames.clear();
-//        TaskControllerRunning.workIDs.clear();
-//        TaskControllerRunning.workNames.clear();
-//        TaskControllerRunning.assignedToNames.clear();
-//        TaskControllerRunning.assignedToUsernames.clear();
-//        TaskControllerDone.workIDs.clear();
-//        TaskControllerDone.workNames.clear();
-//        TaskControllerDone.assignedToNames.clear();
-//        TaskControllerDone.assignedToUsernames.clear();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/master.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
@@ -144,6 +132,16 @@ public class AdminDashboardController implements Initializable {
     @FXML
     protected void addTasks(ActionEvent e) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/addTask.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    @FXML
+    protected void viewReports(ActionEvent e) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/reports.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);

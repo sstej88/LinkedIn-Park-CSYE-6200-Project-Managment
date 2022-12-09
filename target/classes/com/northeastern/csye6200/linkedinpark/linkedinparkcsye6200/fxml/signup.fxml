@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200.SignupController">
+    <top>
+        <Label text="Welcome to Project Management System - CSYE6200" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="18.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <bottom>
+        <BorderPane prefHeight="311.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <left>
+                <BorderPane prefHeight="160.0" prefWidth="408.0" BorderPane.alignment="CENTER">
+                    <top>
+                        <MFXTextField fx:id="name" floatingText="Name" prefHeight="51.0" prefWidth="320.0" promptText="Enter your name here" BorderPane.alignment="CENTER_RIGHT">
+                            <BorderPane.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </BorderPane.margin>
+                        </MFXTextField>
+                    </top>
+               <center>
+                  <MFXPasswordField fx:id="password" floatingText="Password" prefHeight="51.0" prefWidth="320.0" promptText="Create a new password" BorderPane.alignment="CENTER_RIGHT">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </MFXPasswordField>
+               </center>
+                </BorderPane>
+            </left>
+            <right>
+                <BorderPane prefHeight="160.0" prefWidth="388.0" BorderPane.alignment="CENTER">
+                    <top>
+                        <MFXTextField fx:id="username" floatingText="Usernmae" prefHeight="51.0" prefWidth="320.0" promptText="Enter your email address" BorderPane.alignment="CENTER_LEFT">
+                            <BorderPane.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </BorderPane.margin>
+                        </MFXTextField>
+                    </top>
+                    <left>
+                        <Label prefHeight="17.0" prefWidth="139.0" text="Select your position here:" BorderPane.alignment="TOP_LEFT">
+                            <BorderPane.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </BorderPane.margin>
+                        </Label>
+                    </left>
+                    <right>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <top>
+                                <RadioButton fx:id="teamManager" mnemonicParsing="false" text="Team Manager" BorderPane.alignment="CENTER">
+                                    <BorderPane.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </BorderPane.margin>
+                                </RadioButton>
+                            </top>
+                            <center>
+                                <RadioButton fx:id="teamMember" mnemonicParsing="false" text="Team Member" BorderPane.alignment="TOP_CENTER">
+                                    <BorderPane.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </BorderPane.margin>
+                                </RadioButton>
+                            </center>
+                        </BorderPane>
+                    </right>
+                </BorderPane>
+            </right>
+            <bottom>
+                <BorderPane prefHeight="138.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+                    <top>
+                        <MFXButton fx:id="signup" buttonType="RAISED" depthLevel="LEVEL3" onAction="#onClickingSignup" prefHeight="51.0" prefWidth="234.0" style="-fx-background-color: #3f51b5;" text="Signup" textFill="WHITE" BorderPane.alignment="CENTER" />
+                    </top>
+                    <center>
+                        <Label fx:id="statusLabel" text="Status Label" BorderPane.alignment="TOP_CENTER">
+                            <BorderPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </BorderPane.margin>
+                        </Label>
+                    </center>
+                    <bottom>
+                        <Hyperlink fx:id="login" onAction="#onClickingLogin" text="Got your account? Login Here" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </BorderPane.margin>
+                        </Hyperlink>
+                    </bottom>
+                </BorderPane>
+            </bottom>
+        </BorderPane>
+    </bottom>
+    <center>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="302.0" text="Are you ready? Sign your details here!" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="16.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets top="10.0" />
+            </BorderPane.margin>
+        </Label>
+    </center>
+</BorderPane>
