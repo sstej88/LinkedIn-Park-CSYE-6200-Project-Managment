@@ -1,6 +1,8 @@
 package com.northeastern.csye6200.linkedinpark.linkedinparkcsye6200;
 
 import com.mysql.cj.log.Log;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -139,7 +141,7 @@ public class DatabaseConnector {
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
-            String query = "SELECT * FROM tasks WHERE assigned_to_username='"+username+"';";
+            String query = "SELECT * FROM tasks WHERE assigned_to_username='"+username+"' ORDER BY isPriority DESC;";
 //            String query = "SELECT task_id, task_name, task_description, task_status, isPriority, \n" +
 //                    "assigned_by_username, assigned_by_name, assigned_to_username, assigned_to_name, finish_date, \n" +
 //                    "CASE WHEN finish_date < CURDATE() Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks \n" +
@@ -228,7 +230,13 @@ public class DatabaseConnector {
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
-            String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"', isPriority='"+isPriority+"', finish_date='"+finishDate+"' WHERE task_id='"+workID+"';";
+            String query = "";
+            if(LoggedInUser.role.equals("Team Manager")) {
+                query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"', isPriority='"+isPriority+"', finish_date='"+finishDate+"' WHERE task_id='"+workID+"';";
+            }
+            else {
+                query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_by_username='"+UName+"', assigned_by_name='"+Name+"', task_description='"+description+"', isPriority='"+isPriority+"', finish_date='"+finishDate+"' WHERE task_id='"+workID+"';";
+            }
             System.out.println(query);
             st.executeUpdate(query);
             st.close();

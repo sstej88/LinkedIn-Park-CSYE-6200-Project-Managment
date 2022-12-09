@@ -77,6 +77,9 @@ public class TaskChangerController implements Initializable {
     CheckBox isPriorityTask;
 
     @FXML
+    Label assignedLabel;
+
+    @FXML
     protected void getBackIntoWorkItems(ActionEvent e) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/adminDashboard.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -197,6 +200,7 @@ public class TaskChangerController implements Initializable {
             deleteButton.setDisable(true);
             finish_date_input.setDisable(true);
             assignTo.setDisable(true);
+            assignedLabel.setText("Assigned By : ");
         }
     }
 }
