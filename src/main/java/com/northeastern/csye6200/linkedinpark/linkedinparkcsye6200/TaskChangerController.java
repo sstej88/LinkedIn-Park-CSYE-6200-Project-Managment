@@ -7,10 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class TaskChangerController implements Initializable {
@@ -61,6 +65,15 @@ public class TaskChangerController implements Initializable {
     ComboBox assignTo;
 
     @FXML
+    Button deleteButton;
+
+    @FXML
+    Button updateButton;
+
+    @FXML
+    Label statusMessage;
+
+    @FXML
     protected void getBackIntoWorkItems(ActionEvent e) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/adminDashboard.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -79,7 +92,8 @@ public class TaskChangerController implements Initializable {
     @FXML
     protected void updateTask(ActionEvent e) throws Exception {
         DatabaseConnector dbs = new DatabaseConnector();
-        String status;
+        String status = "";
+        String assignedTo = assignedToName;
         if(start.isSelected()) {
             status = "Start";
         }
@@ -89,11 +103,34 @@ public class TaskChangerController implements Initializable {
         else {
             status = "Done";
         }
-        dbs.updateTask(workID, task_name_input.getText(), status, dbs.getUsername((String) assignTo.getValue()), (String) assignTo.getValue(), description_input.getText(), finish_date_input.getValue());
-        getBackIntoWorkItems(e);
+        if(assignTo.getValue() != null) {
+            assignedTo = (String)assignTo.getValue();
+        }
+//        System.out.println(workID);
+//        System.out.println(task_name_input.getText());
+//        System.out.println(status);
+//        System.out.println(assignedTo);
+//        System.out.println(description_input.getText());
+//        System.out.println(localDate);
+        if(finish_date_input.getValue() != null) {
+            if(finish_date_input.getValue().isBefore(LocalDate.now())) {
+                statusMessage.setText("You have selected previous date as finish date! Please select other date and try.");
+                statusMessage.setTextFill(Color.RED);
+            }
+            else {
+                dbs.updateTask(workID, task_name_input.getText(), status, dbs.getUsername(assignedTo), assignedTo, description_input.getText(), finish_date_input.getValue());
+                getBackIntoWorkItems(e);
+            }
+        }
+        else {
+            dbs.updateTask(workID, task_name_input.getText(), status, dbs.getUsername(assignedTo), assignedTo, description_input.getText());
+            getBackIntoWorkItems(e);
+        }
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        statusMessage.setText("");
         work_id.setText("View and Update the Task : Work ID - "+workID);
         DatabaseConnector dbs = new DatabaseConnector();
         try {
@@ -137,6 +174,11 @@ public class TaskChangerController implements Initializable {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+        if(LoggedInUser.role.equals("Team Member")) {
+            deleteButton.setDisable(true);
+            finish_date_input.setDisable(true);
+            assignTo.setDisable(true);
         }
     }
 }

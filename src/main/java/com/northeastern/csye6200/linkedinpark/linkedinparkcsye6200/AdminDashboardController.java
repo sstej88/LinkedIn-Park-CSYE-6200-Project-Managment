@@ -49,6 +49,9 @@ public class AdminDashboardController implements Initializable {
     Label BubbleLabelCompleted;
 
     @FXML
+    Button viewReports;
+
+    @FXML
     protected void signout(ActionEvent e) throws Exception {
         LoggedInUser.name = "";
         LoggedInUser.role = "";
@@ -56,18 +59,6 @@ public class AdminDashboardController implements Initializable {
         TaskControllerYetToStart.taskList.clear();
         TaskControllerRunning.taskList.clear();
         TaskControllerDone.taskList.clear();
-//        TaskControllerYetToStart.workIDs.clear();
-//        TaskControllerYetToStart.workNames.clear();
-//        TaskControllerYetToStart.assignedToNames.clear();
-//        TaskControllerYetToStart.assignedToUsernames.clear();
-//        TaskControllerRunning.workIDs.clear();
-//        TaskControllerRunning.workNames.clear();
-//        TaskControllerRunning.assignedToNames.clear();
-//        TaskControllerRunning.assignedToUsernames.clear();
-//        TaskControllerDone.workIDs.clear();
-//        TaskControllerDone.workNames.clear();
-//        TaskControllerDone.assignedToNames.clear();
-//        TaskControllerDone.assignedToUsernames.clear();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/master.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
@@ -78,7 +69,12 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     protected void getTasks() throws Exception {
-        dbs.getTasksAssignedBy(LoggedInUser.username);
+        if(LoggedInUser.role.equals("Team Manager")) {
+            dbs.getTasksAssignedBy(LoggedInUser.username);
+        }
+        else {
+            dbs.getTasksAssignedTo(LoggedInUser.username);
+        }
         for(int i=0; i<TaskControllerYetToStart.taskList.size();i++) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("fxml/taskShowerYetToStart.fxml"));
@@ -139,11 +135,24 @@ public class AdminDashboardController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        if(LoggedInUser.role.equals("Team Member")) {
+            viewReports.setVisible(false);
+        }
     }
 
     @FXML
     protected void addTasks(ActionEvent e) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/addTask.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    @FXML
+    protected void viewReports(ActionEvent e) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/reports.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);

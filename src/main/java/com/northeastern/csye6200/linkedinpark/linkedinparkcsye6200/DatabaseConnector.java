@@ -84,11 +84,11 @@ public class DatabaseConnector {
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
-//            String query = "SELECT * FROM tasks WHERE assigned_by_username='"+username+"';";
-            String query = "SELECT task_id, task_name, task_description, task_status, isPriority, \n" +
-                    "assigned_by_username, assigned_by_name, assigned_to_username, assigned_to_name, finish_date, \n" +
-                    "CASE WHEN finish_date < CURDATE() Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks \n" +
-                    "ORDER BY isPriority DESC, IsDeadlineMissed DESC, task_id ASC";
+            String query = "SELECT * FROM tasks WHERE assigned_by_username='"+username+"';";
+//            String query = "SELECT task_id, task_name, task_description, task_status, isPriority, \n" +
+//                    "assigned_by_username, assigned_by_name, assigned_to_username, assigned_to_name, finish_date, \n" +
+//                    "CASE WHEN finish_date < CURDATE() Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks \n" +
+//                    "ORDER BY isPriority DESC, IsDeadlineMissed DESC, task_id ASC";
             System.out.println(query);
             ResultSet rs = st.executeQuery(query);
 
@@ -104,15 +104,15 @@ public class DatabaseConnector {
                 DisplayTaskClass objTask = new DisplayTaskClass();
                 objTask.taskId = rs.getInt(1);
                 objTask.task_name = rs.getString(2);
-                objTask.task_description = rs.getString(3);
-                objTask.task_status = rs.getString(4);
-                objTask.isPriority = rs.getBoolean(5);
-                objTask.assignedByUserName = rs.getString(6);
-                objTask.assignedByName = rs.getString(7);
-                objTask.assignedUserName = rs.getString(8);
-                objTask.assignedName = rs.getString(9);
+                objTask.task_description = rs.getString(8);
+                objTask.task_status = rs.getString(3);
+                objTask.isPriority = rs.getBoolean(9);
+                objTask.assignedByUserName = rs.getString(4);
+                objTask.assignedByName = rs.getString(5);
+                objTask.assignedUserName = rs.getString(6);
+                objTask.assignedName = rs.getString(7);
                 objTask.finish_date = rs.getDate(10);
-                objTask.isDeadlineMissed = rs.getBoolean(11);
+//                objTask.isDeadlineMissed = rs.getBoolean(11);
 
                 if(objTask.task_status.equals("Start")) {
                     System.out.println(objTask.task_status+" - "+objTask.taskId+" - "+objTask.task_name+" - "+objTask.assignedName+" - "+objTask.assignedUserName);
@@ -132,6 +132,62 @@ public class DatabaseConnector {
             System.out.println("Not connected to database");
         }
     }
+
+    public void getTasksAssignedTo(String username) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            String query = "SELECT * FROM tasks WHERE assigned_to_username='"+username+"';";
+//            String query = "SELECT task_id, task_name, task_description, task_status, isPriority, \n" +
+//                    "assigned_by_username, assigned_by_name, assigned_to_username, assigned_to_name, finish_date, \n" +
+//                    "CASE WHEN finish_date < CURDATE() Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks \n" +
+//                    "ORDER BY isPriority DESC, IsDeadlineMissed DESC, task_id ASC";
+            System.out.println(query);
+            ResultSet rs = st.executeQuery(query);
+
+            // Clear previous list before new list is loaded
+
+            TaskControllerYetToStart.taskList.clear();
+            TaskControllerRunning.taskList.clear();
+            TaskControllerDone.taskList.clear();
+
+
+            // load new list
+            while(rs.next()) {
+                DisplayTaskClass objTask = new DisplayTaskClass();
+                objTask.taskId = rs.getInt(1);
+                objTask.task_name = rs.getString(2);
+                objTask.task_description = rs.getString(8);
+                objTask.task_status = rs.getString(3);
+                objTask.isPriority = rs.getBoolean(9);
+                objTask.assignedByUserName = rs.getString(4);
+                objTask.assignedByName = rs.getString(5);
+                objTask.assignedUserName = rs.getString(6);
+                objTask.assignedName = rs.getString(7);
+                objTask.finish_date = rs.getDate(10);
+//                objTask.isDeadlineMissed = rs.getBoolean(11);
+
+                if(objTask.task_status.equals("Start")) {
+                    System.out.println(objTask.task_status+" - "+objTask.taskId+" - "+objTask.task_name+" - "+objTask.assignedName+" - "+objTask.assignedUserName);
+                    TaskControllerYetToStart.taskList.add(objTask);
+                }
+                else if(objTask.task_status.equals("Running")) {
+                    TaskControllerRunning.taskList.add(objTask);
+                }
+                else if(objTask.task_status.equals("Done")) {
+                    TaskControllerDone.taskList.add(objTask);
+                }
+            }
+            st.close();
+            conn.close();
+        }
+        else {
+            System.out.println("Not connected to database");
+        }
+    }
+
 
     public void getTaskFromDatabase(String workId) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -173,6 +229,24 @@ public class DatabaseConnector {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
             String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"', finish_date='"+finishDate+"' WHERE task_id='"+workID+"';";
+            System.out.println(query);
+            st.executeUpdate(query);
+            st.close();
+            conn.close();
+        }
+        else {
+            System.out.println("Unable to Connect to database");
+        }
+    }
+
+    public void updateTask(String workID, String TName, String status, String UName, String Name, String description) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            String query = "UPDATE tasks SET task_name='"+TName+"', task_status='"+status+"', assigned_to_username='"+UName+"', assigned_to_name='"+Name+"', task_description='"+description+"' WHERE task_id='"+workID+"';";
+            System.out.println(query);
             st.executeUpdate(query);
             st.close();
             conn.close();
@@ -188,7 +262,7 @@ public class DatabaseConnector {
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM login_details WHERE name = '"+name+"'");
+            ResultSet rs = st.executeQuery("SELECT * FROM login_details WHERE name = '"+name+"';");
             rs.next();
             String username = rs.getString("username");
             st.close();
@@ -253,9 +327,8 @@ public class DatabaseConnector {
 //
     public ArrayList<Users> getTeamMembersList() throws Exception {
         ArrayList<Users> outPutList = new ArrayList<Users>();
-
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
@@ -275,7 +348,7 @@ public class DatabaseConnector {
 
     public void InsertNewTask(String Title, String Description, Date FinishByDate, Boolean isPriority, String assignedUserName, String assignedName, String assignedByUserName, String assignedByName) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
         if(conn!=null) {
             System.out.println("Connected to database");
             Statement st = conn.createStatement();
@@ -292,7 +365,7 @@ public class DatabaseConnector {
         }
     }
 
-    // Get all discussion messages for a given task
+ // Get all discussion messages for a given task
     public ArrayList<DiscussionClass> FetchAllMessages(Integer TaskId) throws Exception {
         ArrayList<DiscussionClass> messageList = new ArrayList<DiscussionClass>();
 
@@ -310,12 +383,12 @@ public class DatabaseConnector {
                 objMessage.sendByUserName = rs.getString(5);;
                 objMessage.sendByName = rs.getString(6);
                 messageList.add(objMessage);
-            }
+          }
         }
         else {
             System.out.println("Unable to Connect to database");
         }
-
+        
         return messageList;
     }
 
@@ -334,7 +407,80 @@ public class DatabaseConnector {
             conn.close();
         }
         else {
-            System.out.println("Not connected to database");
+            System.out.println("Not connected to database");            
         }
     }
+    
+    [11:46] Sai Tej Sunkara
+public void getPendingTasks() throws Exception {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+    if(conn!=null) {
+        System.out.println("Connected to database");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT task_id, task_name, assigned_to_username, task_status, CASE WHEN finish_date < CURDATE() && task_status <> 'Done' Then 1 ELSE 0 END AS 'IsDeadlineMissed' FROM tasks ORDER BY isPriority DESC, IsDeadlineMissed DESC, task_id ASC;");
+        while(rs.next()) {
+            PendingTask pt = new PendingTask();
+            pt.taskID = rs.getString("task_id");
+            pt.taskName = rs.getString("task_name");
+            pt.assignedTo = rs.getString("assigned_to_username");
+            pt.taskStatus = rs.getString("task_status");
+            ReportsController.tasks.add(pt);
+        }
+    }
+    else {
+        System.out.println("Unable to Connect to database");
+    }
 }
+
+public ResultSet getStatistics() throws Exception {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+    if(conn!=null) {
+        System.out.println("Connected to database");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("" +
+                "SELECT \tCOUNT(*) AS 'TotalTasks', \n" +
+                "\t\tCOUNT(IF(task_status <> 'Done', 1, NULL)) AS 'PendingTasks',\n" +
+                "\t\tCOUNT(IF(task_status = 'Done', 1, NULL)) AS 'CompletedTasks',\n" +
+                "\t\tCOUNT(IF(isPriority = 1, 1, NULL)) AS 'PriorityTasks',\n" +
+                "\t\tCOUNT(IF(isPriority = 1 && task_status <> 'Done', 1, NULL)) AS 'PriorityPendingTasks',\n" +
+                "\t\tCOUNT(IF(finish_date < CURDATE() && task_status <> 'Done', 1, NULL)) AS 'MissedDeadlines'\n" +
+                "FROM tasks;");
+        return rs;
+    }
+    else {
+        System.out.println("Unable to Connect to database");
+        return null;
+    }
+}
+
+public ResultSet getPoorPerformance() throws Exception {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/csye6200", "root", "rootadmin");
+    if(conn!=null) {
+        System.out.println("Connected to database");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT \tA.username, \n" +
+                "\t\tA.name, \n" +
+                "\t\tCOUNT(A.task_id) AS 'TotalTasks',\n" +
+                "\t\tCOUNT(IF(A.task_status <> 'Done', 1, NULL)) AS 'PendingTasks',\n" +
+                "        COUNT(IF(A.finish_date < CURDATE() && A.task_status <> 'Done', 1, NULL)) AS 'MissedDeadlines', \n" +
+                "        COUNT(IF(A.isPriority = 1 && A.task_status <> 'Done', 1, NULL)) AS 'PriorityPendingTasks'\n" +
+                "FROM (\n" +
+                "\tSELECT * \n" +
+                "\tFROM login_details\n" +
+                "\tLEFT JOIN tasks on login_details.username = tasks.assigned_to_username\n" +
+                "    WHERE login_details.role='Team Member'\n" +
+                "    ) AS A\n" +
+                "GROUP BY A.username, A.name\n" +
+                "ORDER BY MissedDeadlines DESC, PendingTasks DESC;");
+        return rs;
+    }
+    else {
+        System.out.println("Unable to Connect to database");
+        return null;
+    }
+}
+}
+
