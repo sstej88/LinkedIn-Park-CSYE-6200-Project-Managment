@@ -47,6 +47,9 @@
                </left>
             </BorderPane>
          </bottom>
+         <right>
+            <MFXButton onAction="#ShowDiscussion" text="Discuss" BorderPane.alignment="CENTER" />
+         </right>
       </BorderPane>
    </center>
    <top>

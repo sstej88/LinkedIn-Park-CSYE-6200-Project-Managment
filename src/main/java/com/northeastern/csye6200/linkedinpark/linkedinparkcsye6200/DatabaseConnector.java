@@ -291,4 +291,50 @@ public class DatabaseConnector {
             System.out.println("Not connected to database");
         }
     }
+
+    // Get all discussion messages for a given task
+    public ArrayList<DiscussionClass> FetchAllMessages(Integer TaskId) throws Exception {
+        ArrayList<DiscussionClass> messageList = new ArrayList<DiscussionClass>();
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT message_id, task_id, message, sendDate, sendByUserName, sendByName FROM discussion WHERE task_id = "+TaskId+" ORDER BY sendDate ASC;");
+            while(rs.next()) {
+                DiscussionClass objMessage = new DiscussionClass();
+                objMessage.message_id = rs.getInt(1);
+                objMessage.task_id = rs.getInt(2);
+                objMessage.message = rs.getString(3);
+                objMessage.sendByUserName = rs.getString(5);;
+                objMessage.sendByName = rs.getString(6);
+                messageList.add(objMessage);
+            }
+        }
+        else {
+            System.out.println("Unable to Connect to database");
+        }
+
+        return messageList;
+    }
+
+    // Send message save
+    public void InsertNewMessage(String Message, Integer task_id, String sendByUserName, String sendByName) throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+        if(conn!=null) {
+            System.out.println("Connected to database");
+            Statement st = conn.createStatement();
+            String query = "INSERT INTO discussion (task_id, message, sendByUserName, sendByName)\n" +
+                    "VALUES ("+task_id+", '"+Message+"', '"+sendByUserName+"', '"+sendByName+"')";
+            System.out.println(query);
+            st.execute(query);
+            st.close();
+            conn.close();
+        }
+        else {
+            System.out.println("Not connected to database");
+        }
+    }
 }
