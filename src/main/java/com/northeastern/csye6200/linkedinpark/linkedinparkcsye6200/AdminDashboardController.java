@@ -150,4 +150,14 @@ public class AdminDashboardController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
+
+    @FXML
+    protected void viewReports(ActionEvent e) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/addTask.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
 }

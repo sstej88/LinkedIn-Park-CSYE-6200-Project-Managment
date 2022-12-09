@@ -3,14 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Box?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="977.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="293.0" layoutY="25.0" text="Reports - Project Management System">
          <font>
@@ -20,9 +19,9 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <ScrollPane layoutX="14.0" layoutY="87.0" prefHeight="200.0" prefWidth="861.0">
+      <ScrollPane layoutX="13.0" layoutY="86.0" prefHeight="218.0" prefWidth="867.0">
          <content>
-            <HBox prefHeight="198.0" prefWidth="859.0" />
+            <HBox prefHeight="215.0" prefWidth="865.0" />
          </content>
       </ScrollPane>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="39.0" prefHeight="39.0" prefWidth="188.0" style="-fx-background-color: #241236; -fx-border-radius: 50px;" text="Pending Tasks" textFill="WHITE">
@@ -30,13 +29,49 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView layoutX="15.0" layoutY="311.0" prefHeight="198.0" prefWidth="867.0">
-        <columns>
-          <TableColumn prefWidth="289.0" text="C1" />
-          <TableColumn minWidth="0.0" prefWidth="289.0" text="C2" />
-            <TableColumn prefWidth="289.0" text="Column X" />
-        </columns>
-      </TableView>
+      <Box depth="100" disable="true" height="200.0" layoutX="197.0" layoutY="494.0" width="150.0" AnchorPane.topAnchor="400.0" />
+      <Box depth="100" disable="true" height="200.0" layoutX="468.0" layoutY="497.0" width="150.0" AnchorPane.topAnchor="400.0" />
+      <Box depth="100" disable="true" height="200.0" layoutX="722.0" layoutY="494.0" width="150.0" AnchorPane.topAnchor="400.0" />
+      <Label layoutX="162.0" layoutY="365.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #05445E;" text="Total Tasks" textFill="WHITE">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label layoutX="424.0" layoutY="365.0" style="-fx-background-color: #05445E;" text="Pending Tasks" textFill="WHITE">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label layoutX="672.0" layoutY="365.0" style="-fx-background-color: #05445E;" text="Overdue Tasks" textFill="WHITE">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label layoutX="175.0" layoutY="481.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="446.0" layoutY="482.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="698.0" layoutY="483.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="671.0" prefHeight="46.0" prefWidth="235.0" text="Low Performance Reports">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="13.0" layoutY="725.0" prefHeight="208.0" prefWidth="865.0">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="846.0" />
+         </content>
+      </ScrollPane>
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
